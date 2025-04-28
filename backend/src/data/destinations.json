@@ -1,0 +1,248 @@
+[
+  {
+    "Country": "Australia",
+    "City": "Sydney",
+    "AirportCode": "SYD",
+    "BestMonths": "September–November"
+  },
+  {
+    "Country": "Australia",
+    "City": "Melbourne",
+    "AirportCode": "MEL",
+    "BestMonths": "March–May"
+  },
+  {
+    "Country": "Austria",
+    "City": "Vienna",
+    "AirportCode": "VIE",
+    "BestMonths": "April–June"
+  },
+  {
+    "Country": "Bangladesh",
+    "City": "Dhaka",
+    "AirportCode": "DAC",
+    "BestMonths": "November–February"
+  },
+  {
+    "Country": "Canada",
+    "City": "Toronto",
+    "AirportCode": "YYZ",
+    "BestMonths": "May–October"
+  },
+  {
+    "Country": "Canada",
+    "City": "Vancouver",
+    "AirportCode": "YVR",
+    "BestMonths": "June–September"
+  },
+  {
+    "Country": "Denmark",
+    "City": "Copenhagen",
+    "AirportCode": "CPH",
+    "BestMonths": "May–August"
+  },
+  {
+    "Country": "France",
+    "City": "Paris",
+    "AirportCode": "CDG",
+    "BestMonths": "April–June, September–October"
+  },
+  {
+    "Country": "Germany",
+    "City": "Frankfurt",
+    "AirportCode": "FRA",
+    "BestMonths": "May–September"
+  },
+  {
+    "Country": "Hong Kong",
+    "City": "Hong Kong",
+    "AirportCode": "HKG",
+    "BestMonths": "October–December"
+  },
+  {
+    "Country": "Indonesia",
+    "City": "Denpasar (Bali)",
+    "AirportCode": "DPS",
+    "BestMonths": "April–October"
+  },
+  {
+    "Country": "Israel",
+    "City": "Tel Aviv",
+    "AirportCode": "TLV",
+    "BestMonths": "March–May, September–November"
+  },
+  {
+    "Country": "Italy",
+    "City": "Milan",
+    "AirportCode": "MXP",
+    "BestMonths": "April–June, September–October"
+  },
+  {
+    "Country": "Japan",
+    "City": "Tokyo",
+    "AirportCode": "HND",
+    "BestMonths": "March–May, October–November"
+  },
+  {
+    "Country": "Kenya",
+    "City": "Nairobi",
+    "AirportCode": "NBO",
+    "BestMonths": "June–October"
+  },
+  {
+    "Country": "Kuwait",
+    "City": "Kuwait City",
+    "AirportCode": "KWI",
+    "BestMonths": "November–March"
+  },
+  {
+    "Country": "Malaysia",
+    "City": "Kuala Lumpur",
+    "AirportCode": "KUL",
+    "BestMonths": "May–July"
+  },
+  {
+    "Country": "Maldives",
+    "City": "Malé",
+    "AirportCode": "MLE",
+    "BestMonths": "November–April"
+  },
+  {
+    "Country": "Mauritius",
+    "City": "Port Louis",
+    "AirportCode": "MRU",
+    "BestMonths": "May–December"
+  },
+  {
+    "Country": "Myanmar",
+    "City": "Yangon",
+    "AirportCode": "RGN",
+    "BestMonths": "November–February"
+  },
+  {
+    "Country": "Nepal",
+    "City": "Kathmandu",
+    "AirportCode": "KTM",
+    "BestMonths": "October–December"
+  },
+  {
+    "Country": "Netherlands",
+    "City": "Amsterdam",
+    "AirportCode": "AMS",
+    "BestMonths": "April–June, September"
+  },
+  {
+    "Country": "Oman",
+    "City": "Muscat",
+    "AirportCode": "MCT",
+    "BestMonths": "November–March"
+  },
+  {
+    "Country": "Qatar",
+    "City": "Doha",
+    "AirportCode": "DOH",
+    "BestMonths": "November–March"
+  },
+  {
+    "Country": "Saudi Arabia",
+    "City": "Riyadh",
+    "AirportCode": "RUH",
+    "BestMonths": "November–February"
+  },
+  {
+    "Country": "Saudi Arabia",
+    "City": "Jeddah",
+    "AirportCode": "JED",
+    "BestMonths": "November–February"
+  },
+  {
+    "Country": "Singapore",
+    "City": "Singapore",
+    "AirportCode": "SIN",
+    "BestMonths": "February–April"
+  },
+  {
+    "Country": "South Korea",
+    "City": "Seoul",
+    "AirportCode": "ICN",
+    "BestMonths": "March–May, September–November"
+  },
+  {
+    "Country": "Sri Lanka",
+    "City": "Colombo",
+    "AirportCode": "CMB",
+    "BestMonths": "December–March"
+  },
+  {
+    "Country": "Switzerland",
+    "City": "Zurich",
+    "AirportCode": "ZRH",
+    "BestMonths": "June–September"
+  },
+  {
+    "Country": "Thailand",
+    "City": "Bangkok",
+    "AirportCode": "BKK",
+    "BestMonths": "November–February"
+  },
+  {
+    "Country": "Thailand",
+    "City": "Phuket",
+    "AirportCode": "HKT",
+    "BestMonths": "November–April"
+  },
+  {
+    "Country": "United Arab Emirates",
+    "City": "Dubai",
+    "AirportCode": "DXB",
+    "BestMonths": "November–March"
+  },
+  {
+    "Country": "United Arab Emirates",
+    "City": "Abu Dhabi",
+    "AirportCode": "AUH",
+    "BestMonths": "November–March"
+  },
+  {
+    "Country": "United Kingdom",
+    "City": "London",
+    "AirportCode": "LHR",
+    "BestMonths": "May–September"
+  },
+  {
+    "Country": "United Kingdom",
+    "City": "Birmingham",
+    "AirportCode": "BHX",
+    "BestMonths": "May–September"
+  },
+  {
+    "Country": "United States",
+    "City": "New York",
+    "AirportCode": "JFK",
+    "BestMonths": "April–June, September–November"
+  },
+  {
+    "Country": "United States",
+    "City": "Chicago",
+    "AirportCode": "ORD",
+    "BestMonths": "May–October"
+  },
+  {
+    "Country": "United States",
+    "City": "San Francisco",
+    "AirportCode": "SFO",
+    "BestMonths": "September–November"
+  },
+  {
+    "Country": "United States",
+    "City": "Washington, D.C.",
+    "AirportCode": "IAD",
+    "BestMonths": "March–May, September–November"
+  },
+  {
+    "Country": "Vietnam",
+    "City": "Ho Chi Minh City",
+    "AirportCode": "SGN",
+    "BestMonths": "December–April"
+  }
+]

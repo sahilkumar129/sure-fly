@@ -3,7 +3,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import Container from '../node_modules/@mui/material/Container';
+import Container from '@mui/material/Container';
 import HomePage from './pages/HomePage';
 import NavBar from './components/NavBar';
 

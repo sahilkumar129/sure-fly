@@ -14,12 +14,19 @@ This project allows users to search for flights (one-way/round-trip), discover p
 *   **Flight Analytics:**
     *   **Monthly Traffic Ranking:** View historical air traffic volume between two cities for a given year, ranked month-by-month from least busy to most busy based on traveler scores.
     *   **Most Traveled Destinations:** Find the top historically traveled destinations from a specific origin city for a given month (YYYY-MM), sortable by traveler volume or number of flights.
+*   **Daily Flight Alert Job:**
+    *   Runs daily at 9:00 PM IST.
+    *   Checks for one-way flights from BLR (Bangalore) for the *next* day to a predefined list of international destinations.
+    *   Filters destinations based on whether the next day falls within their generally recommended travel months.
+    *   Specifically looks for flights (currently hardcoded to check Air India - `AI`) with 9 or more seats available.
+    *   If suitable flights are found, sends an email alert to the configured recipient address using MailerSend.
 
 ## Project Structure
 
 *   `/backend`: Contains the Node.js/Express API server.
     *   `src/`: Source code (Controllers, Routes, Services, Providers).
-    *   `.env`: Environment variables (needs Amadeus API key/secret/base URL).
+    *   `jobs/`: Contains background job scripts (e.g., `flightChecker.js`).
+    *   `.env`: Environment variables (needs Amadeus API key/secret/base URL, MailerSend key, recipient email).
     *   `package.json`: Backend dependencies.
 *   `/frontend`: Contains the React/Vite frontend application.
     *   `src/`: Source code (Components, Pages, API client).
@@ -45,13 +52,17 @@ This project allows users to search for flights (one-way/round-trip), discover p
     ```
 3.  **Configure Backend Environment:**
     *   Create a `.env` file in the `/backend` directory.
-    *   Add your Amadeus API Key, Secret, and the Base URL (Test or Production):
+    *   Add your Amadeus API Key, Secret, Base URL, Port, MailerSend API Key, and the recipient email for alerts:
       ```env
       AMADEUS_API_KEY=YOUR_API_KEY_HERE
       AMADEUS_API_SECRET=YOUR_API_SECRET_HERE
       AMADEUS_API_BASE_URL=https://test.api.amadeus.com # For testing
       # AMADEUS_API_BASE_URL=https://api.amadeus.com # For production
       PORT=5001 # Or your preferred port
+
+      # For Daily Flight Alert Job
+      MAILERSEND_API_KEY=YOUR_MAILERSEND_API_KEY_HERE
+      RECIPIENT_EMAIL=your_alert_email@example.com
       ```
 4.  **Install Frontend Dependencies:**
     ```bash
@@ -101,10 +112,11 @@ This project allows users to search for flights (one-way/round-trip), discover p
     *   Body: `{ "originCityCode": "PAR", "period": "YYYY-MM", "max": 15 (optional, default 10), "sort": "analytics.flights.score" (optional, default travelers) }`
     *   Response: `{ "type": "most-traveled-destinations", "results": [ ...top destinations ranked... ], "query": ... }` or `{ "type": "no-data", ... }`
 
-
 ## Notes
 
 *   **Seat Availability Cap:** Amadeus Flight Offers Search often reports a maximum of '9' available seats (`numberOfBookableSeats: 9`), meaning "9 or more".
 *   **Test Data Limitations:** The Amadeus **Test** environment has limited data, especially for the analytics APIs (Inspiration, Traffic, Most Traveled). You may receive "no data found" responses frequently during testing, even for valid queries. Functionality should be more robust in the Production environment.
 *   **UI Library:** The frontend uses Material UI (MUI) for components and styling.
-*   **Error Handling:** Basic error handling is implemented. Can be improved. 
+*   **Error Handling:** Basic error handling is implemented. Can be improved.
+*   **Daily Alert Job:** The background job (`flightChecker.js`) runs automatically when the backend server starts. Check the server console logs around 9:00 PM IST (15:30 UTC) for job activity.
+*   **MailerSend Sender:** Ensure the sender email address used in `flightChecker.js` (`flightalerts@yourdomain.com`) is from a domain verified within your MailerSend account. 

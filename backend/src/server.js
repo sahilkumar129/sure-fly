@@ -3,9 +3,10 @@ const express = require("express");
 const cors = require("cors");
 const flightRoutes = require("./routes/flightRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
+const { scheduleJob } = require("./jobs/flightChecker");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5001;
 
 // Middleware
 app.use(cors()); // Allow requests from frontend (adjust origin in production)
@@ -22,10 +23,11 @@ app.get("/", (req, res) => {
 
 // Global error handler (optional basic example)
 app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send("Something broke!");
+  console.error("Unhandled Error:", err.stack || err);
+  res.status(500).json({ message: err.message || "Something went wrong!" });
 });
 
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
+  console.log(`Server running on port ${port}`);
+  scheduleJob();
 });

@@ -18,12 +18,12 @@ function AnalyticsResultsDisplay({ results }) {
 
   return (
     <div style={{ marginTop: '1.5rem', padding: '1rem', border: '1px solid #ccc', borderRadius: '4px' }}>
-      {/* Updated Title */}
-      <h4>Monthly Traffic Ranking ({query.year})</h4>
+      {/* Updated Title to use period */}
+      <h4>Monthly Traffic Ranking ({query.period})</h4>
       <p>
         {/* Updated Description based on score sorting */}
         Historical analysis for travel <strong>{directionText}</strong>
-        in the year <strong>{query.year}</strong>,
+        in the period <strong>{query.period}</strong>,
         ranked from least busy (lowest score) to most busy (highest score).
       </p>
       <ol style={{ paddingLeft: '20px' }}>

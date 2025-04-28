@@ -19,7 +19,9 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "framer-motion": "^12.9.2",
-    "luxon": "^3.4.4"
+    "luxon": "^3.6.1",
+    "mailersend": "^2.5.0",
+    "node-cron": "^3.0.3"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

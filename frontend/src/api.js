@@ -19,7 +19,8 @@ export const searchRoundTripFlights = (data) => {
 };
 
 export const getBusiestTravelPeriod = (data) => {
-  // Expects data = { originCityCode, destinationCityCode, period, direction }
+  // Expects data = { cityCode, period, direction }
+  // Example: { cityCode: 'MAD', period: '2017', direction: 'ARRIVING' }
   return apiClient.post("/analytics/busiest-period", data);
 };
 

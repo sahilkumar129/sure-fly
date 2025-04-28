@@ -8,9 +8,9 @@ import {
 // MUI Imports
 import {
     Box, Typography, RadioGroup, FormControlLabel, Radio, TextField,
-    Button, Checkbox, CircularProgress, Alert, AlertTitle,
-    Tabs, Tab, Grid, Stack, FormControl, FormLabel
-} from '../../node_modules/@mui/material';
+    Button, CircularProgress, Alert, AlertTitle,
+    Tabs, Tab, Grid, FormControl
+} from '@mui/material';
 // Keep custom components (assuming they will be refactored or don't use Chakra)
 import FlightResults from '../components/FlightResults';
 import InspirationResults from '../components/InspirationResults';
@@ -18,6 +18,8 @@ import AnalyticsSearchForm from '../components/AnalyticsSearchForm'; // Renamed 
 import AnalyticsResultsDisplay from '../components/AnalyticsResultsDisplay'; // Renamed to MonthlyTrafficResults later?
 import MostTraveledForm from '../components/MostTraveledForm';
 import MostTraveledResults from '../components/MostTraveledResults';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs'; // Import dayjs for date handling
 
 // Helper component for TabPanel content (required by MUI Tabs)
 function TabPanel(props) {
@@ -55,8 +57,8 @@ function HomePage() {
     const [searchType, setSearchType] = useState('oneWay');
     const [origin, setOrigin] = useState('');
     const [destination, setDestination] = useState('');
-    const [departureDate, setDepartureDate] = useState('');
-    const [returnDate, setReturnDate] = useState('');
+    const [departureDate, setDepartureDate] = useState(null);
+    const [returnDate, setReturnDate] = useState(null);
     const [airlineCode, setAirlineCode] = useState('');
     const [searchResultType, setSearchResultType] = useState('none');
     const [flightOffers, setFlightOffers] = useState([]);
@@ -107,26 +109,30 @@ function HomePage() {
         setSelectedDestinations(new Set());
         setSearchResultType('none');
 
+        // Format dates before sending
+        const formattedDepartureDate = departureDate ? dayjs(departureDate).format('YYYY-MM-DD') : '';
+        const formattedReturnDate = returnDate ? dayjs(returnDate).format('YYYY-MM-DD') : '';
+
         const commonParams = {
             origin,
-            departureDate,
+            departureDate: formattedDepartureDate,
             airlineCode: airlineCode || undefined,
         };
 
         try {
             let response;
             const apiCallParams = destination
-                ? { ...commonParams, destination, returnDate: searchType === 'roundTrip' ? returnDate : undefined }
+                ? { ...commonParams, destination, returnDate: searchType === 'roundTrip' ? formattedReturnDate : undefined }
                 : commonParams;
 
             const apiFunction = searchType === 'oneWay' ? searchOneWayFlights : searchRoundTripFlights;
 
-            if (!origin || !departureDate) {
+            if (!origin || !formattedDepartureDate) {
                 setError("Origin and Departure Date are required.");
                 setLoadingStage1(false);
                 return;
             }
-            if (destination && searchType === 'roundTrip' && !returnDate) {
+            if (destination && searchType === 'roundTrip' && !formattedReturnDate) {
                 setError("Return Date is required for round-trip offer search.");
                 setLoadingStage1(false);
                 return;
@@ -165,6 +171,10 @@ function HomePage() {
         setError(null);
         setFlightOffers([]);
 
+        // Format dates before sending
+        const formattedDepartureDate = departureDate ? dayjs(departureDate).format('YYYY-MM-DD') : '';
+        const formattedReturnDate = returnDate ? dayjs(returnDate).format('YYYY-MM-DD') : '';
+
         const destinationsToSearch = Array.from(selectedDestinations);
         const promises = [];
         const apiFunction = searchType === 'oneWay' ? searchOneWayFlights : searchRoundTripFlights;
@@ -175,8 +185,8 @@ function HomePage() {
             const params = {
                 origin,
                 destination: dest,
-                departureDate,
-                returnDate: searchType === 'roundTrip' ? returnDate : undefined,
+                departureDate: formattedDepartureDate,
+                returnDate: searchType === 'roundTrip' ? formattedReturnDate : undefined,
                 airlineCode: airlineCode || undefined,
             };
             promises.push(apiFunction(params));
@@ -281,13 +291,26 @@ function HomePage() {
                                 value={destination} onChange={e => setDestination(e.target.value.toUpperCase())} inputProps={{ maxLength: 3 }} placeholder="(Optional)" />
                         </Grid>
                          <Grid item xs={12} sm={6} md={4} lg={2.4}>
-                            <TextField label="Departure Date" type="date" variant="outlined" size="small" fullWidth required
-                                value={departureDate} onChange={e => setDepartureDate(e.target.value)} InputLabelProps={{ shrink: true }} sx={{ mt: 0.5 }} />
+                            <DatePicker
+                                label="Departure Date"
+                                value={departureDate}
+                                onChange={(newValue) => setDepartureDate(newValue)}
+                                slotProps={{ textField: { size: 'small', fullWidth: true, required: true, sx:{ mt: 0.5 } } }}
+                                format="YYYY-MM-DD"
+                                disablePast
+                            />
                         </Grid>
                         {searchType === 'roundTrip' && (
                              <Grid item xs={12} sm={6} md={4} lg={2.4}>
-                                <TextField label="Return Date" type="date" variant="outlined" size="small" fullWidth required={!!destination}
-                                    value={returnDate} onChange={e => setReturnDate(e.target.value)} InputLabelProps={{ shrink: true }} sx={{ mt: 0.5 }} />
+                                <DatePicker
+                                    label="Return Date"
+                                    value={returnDate}
+                                    onChange={(newValue) => setReturnDate(newValue)}
+                                    slotProps={{ textField: { size: 'small', fullWidth: true, required: !!destination, sx:{ mt: 0.5 } } }}
+                                    format="YYYY-MM-DD"
+                                    minDate={departureDate ? dayjs(departureDate).add(1, 'day') : undefined}
+                                    disablePast
+                                />
                              </Grid>
                         )}
                         <Grid item xs={12} sm={6} md={4} lg={2.4}>

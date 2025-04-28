@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
     AppBar, Toolbar, Typography, Button, Box
-} from '../../node_modules/@mui/material';
+} from '@mui/material';
 
 function NavBar() {
   return (

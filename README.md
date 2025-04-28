@@ -16,7 +16,7 @@ This project allows users to search for flights (one-way/round-trip), discover p
     *   **Most Traveled Destinations:** Find the top historically traveled destinations from a specific origin city for a given month (YYYY-MM), sortable by traveler volume or number of flights.
 *   **Daily Flight Alert Job:**
     *   Runs daily at 9:00 PM IST.
-    *   Checks for one-way flights from BLR (Bangalore) for the *next* day to a predefined list of international destinations.
+    *   Checks for one-way flights from BLR (Bangalore) for the *next* day to a predefined list of international destinations (stored in `/backend/src/data/destinations.json`).
     *   Filters destinations based on whether the next day falls within their generally recommended travel months.
     *   Specifically looks for flights (currently hardcoded to check Air India - `AI`) with 9 or more seats available.
     *   If suitable flights are found, sends an email alert to the configured recipient address using MailerSend.
@@ -25,7 +25,8 @@ This project allows users to search for flights (one-way/round-trip), discover p
 
 *   `/backend`: Contains the Node.js/Express API server.
     *   `src/`: Source code (Controllers, Routes, Services, Providers).
-    *   `jobs/`: Contains background job scripts (e.g., `flightChecker.js`).
+        *   `data/`: Contains static data files (e.g., `destinations.json`).
+        *   `jobs/`: Contains background job scripts (e.g., `flightChecker.js`).
     *   `.env`: Environment variables (needs Amadeus API key/secret/base URL, MailerSend key, recipient email).
     *   `package.json`: Backend dependencies.
 *   `/frontend`: Contains the React/Vite frontend application.
